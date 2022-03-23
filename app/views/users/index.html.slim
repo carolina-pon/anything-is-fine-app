@@ -1,0 +1,15 @@
+h2 ユーザー一覧
+= link_to '新規作成', new_user_path
+table
+  tr
+    th scope="col"
+      | Name
+    th scope="col"
+      | Email
+  - @users.each do |user|
+    tr
+      td= user.name
+      td= user.email
+      td= link_to '編集', edit_user_path(user)
+      td id="user-#{user.id}"
+        = link_to '削除', user_path(user), method: :delete, data: {confirm: "本当に削除しますか？"},remote: true
